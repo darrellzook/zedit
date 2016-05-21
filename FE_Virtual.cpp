@@ -1180,7 +1180,8 @@ LRESULT CFastEdit::OnLButtonDown(UINT nFlags, POINT point)
 				ti.uId = (UINT)m_hwnd;
 				ti.hinst = g_fg.m_hinst;
 				char szText[10];
-				ti.lpszText = _itoa(g_fg.m_vpcm[g_fg.m_iColumnDrag]->m_iColumn, szText, 10);
+				_itoa_s(g_fg.m_vpcm[g_fg.m_iColumnDrag]->m_iColumn, szText, 10);
+				ti.lpszText = szText;
 				::SendMessage(hwndToolTip, TTM_ADDTOOL, 0, (LPARAM)&ti);
 
 				// Create the tooltip offscreen so we can move it to the right
@@ -2189,7 +2190,8 @@ LRESULT CFastEdit::OnVScroll(UINT nSBCode, UINT nPos, HWND hwndScroll)
 				// Update the text in the tooltip.
 				char szText[20];
 				TOOLINFO ti = {sizeof(ti)};
-				ti.lpszText = _itoa(iNewFirstPara + 1, szText, 10);
+				_itoa_s(iNewFirstPara + 1, szText, 10);
+				ti.lpszText = szText;
 				ti.hwnd = m_pzef->GetHwnd();
 				ti.uId = (UINT)m_hwnd;
 				::SendMessage(s_hwndToolTip, TTM_UPDATETIPTEXT, 0, (LPARAM)&ti);

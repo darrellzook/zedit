@@ -39,7 +39,7 @@ int CZDoc::AccessDeniedHandler(int nException, DWORD * pdwError, void * pv)
 		g_pszAppName, MB_OKCANCEL | MB_ICONSTOP) == IDOK)
 	{
 		char szFilename[MAX_PATH] = {0};
-		strcpy(szFilename, pzd->GetFilename());
+		strcpy_s(szFilename, pzd->GetFilename());
 		FileType ft = pzef->GetFile(true, szFilename);
 		if (ft != -1)
 		{
@@ -200,7 +200,7 @@ bool CZEditFrame::CreateNewFile(char * pszFilename, HWND hwndProgress, FileType 
 			int cExt = sizeof(szExt) / (sizeof(char) * 10);
 			for (int iExt = 0; iExt < cExt; iExt++)
 			{
-				if (stricmp(szExt[iExt], pszExt) == 0)
+				if (_stricmp(szExt[iExt], pszExt) == 0)
 				{
 					ft = kftBinary;
 					break;
@@ -309,9 +309,7 @@ UINT CALLBACK OFNHookProc(HWND hdlg, UINT uiMsg, WPARAM wParam, LPARAM lParam)
 FileType CZEditFrame::GetFile(bool fSave, char * pszFilename)
 {
 	char szInitialDir[MAX_PATH];
-	// Changing the size here means it needs to be changed in Virtual.cpp
-	// where this method gets called.
-	char szFilename[4000] = { 0 };
+	char szFilename[MAX_PATH] = { 0 };
 	const char * pszFilter =
 		"Text Files (*.txt)\0*.txt\0"
 		"UTF-8 Unicode (*.xml;*.txt)\0*.xml;*.txt\0"
@@ -380,9 +378,10 @@ FileType CZEditFrame::GetFile(bool fSave, char * pszFilename)
 			char szFullFilenames[4000];
 			char * pszFileSrc = szFilename  + strlen(szFilename) + 1;
 			char * pszFileDst = szFullFilenames;
+			char * pszLim = pszFileDst + 4000;
 			while (*pszFileSrc)
 			{
-				sprintf(pszFileDst, "%s\\%s", szFilename, pszFileSrc);
+				sprintf_s(pszFileDst, pszLim - pszFileDst, "%s\\%s", szFilename, pszFileSrc);
 				pszFileSrc += strlen(pszFileSrc) + 1;
 				pszFileDst += strlen(pszFileDst) + 1;
 			}
@@ -392,7 +391,7 @@ FileType CZEditFrame::GetFile(bool fSave, char * pszFilename)
 		}
 		::FindClose(hFile);
 	}
-	strcpy(pszFilename, szFilename);
+	strcpy_s(pszFilename, MAX_PATH, szFilename);
 	return (FileType)(of.nFilterIndex - 1);
 }
 
@@ -1051,8 +1050,8 @@ void CZEditFrame::SelectLine(int iLine)
 		dwStopChar -= cchAtEnd;
 	m_pzdCurrent->SetSelection(dwStartChar, dwStopChar, true, true);
 	if (m_pzdCurrent->GetFileType() == kftBinary)
-		sprintf(szBuffer, "Line %d,  Col %d", iLine + 1, cchInLine - 1);
+		sprintf_s(szBuffer, "Line %d,  Col %d", iLine + 1, cchInLine - 1);
 	else
-		sprintf(szBuffer, "Para %d,  Col %d", iLine + 1, cchInLine - 1);
+		sprintf_s(szBuffer, "Para %d,  Col %d", iLine + 1, cchInLine - 1);
 	SetStatusText(ksboLineCol, szBuffer);
 }

@@ -242,7 +242,7 @@ char * CFastEdit::GetCurPosString()
 				iCol += cchSpacesInTab - (iCol % cchSpacesInTab);
 		}
 	}
-	sprintf(m_szCurPos, "Para %d,  Col %d", cprBefore + ipr + 1, iCol + 1);
+	sprintf_s(m_szCurPos, "Para %d,  Col %d", cprBefore + ipr + 1, iCol + 1);
 	return m_szCurPos;
 }
 
@@ -1690,8 +1690,8 @@ bool CFastEdit::Print(PrintInfo * ppi)
 	char szDate[50];
 	SYSTEMTIME sysTime;
 	::GetLocalTime(&sysTime);
-	sprintf(szTime, "%02d:%02d:%02d", sysTime.wHour, sysTime.wMinute, sysTime.wSecond);
-	sprintf(szDate, "%02d/%02d/%04d", sysTime.wMonth, sysTime.wDay, sysTime.wYear);
+	sprintf_s(szTime, "%02d:%02d:%02d", sysTime.wHour, sysTime.wMinute, sysTime.wSecond);
+	sprintf_s(szDate, "%02d/%02d/%04d", sysTime.wMonth, sysTime.wDay, sysTime.wYear);
 
 	int cColCopy = ppi->fCollate ? ppi->cCopy : 1;
 	int cNonColCopy = ppi->fCollate ? 1 : ppi->cCopy;
@@ -1732,7 +1732,7 @@ bool CFastEdit::Print(PrintInfo * ppi)
 
 			// Update the print dialog
 			hfi.iPage = ++ppi->iPage;
-			sprintf(szProgress, "Page: %d", ppi->iPage);
+			sprintf_s(szProgress, "Page: %d", ppi->iPage);
 			::SetDlgItemText(ppi->hdlgAbort, IDC_PRINTPAGE, szProgress);
 
 			m_pzd->ParseHFString(ppi->pszHeader, szHeader, &hfi);

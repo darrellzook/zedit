@@ -498,9 +498,9 @@ BOOL CZTab::OnPaint()
 				char * pszPath = pzd->GetFilename();
 				char * pszFile = strrchr(pszPath, '\\');
 				char szFilename[MAX_PATH];
-				strcpy(szFilename, pszFile ? pszFile + 1 : pszPath);
+				strcpy_s(szFilename, pszFile ? pszFile + 1 : pszPath);
 				if (pzd->GetModify())
-					strcat(szFilename, " *");
+					strcat_s(szFilename, " *");
 				int cch = strlen(szFilename);
 
 				if (iItem == m_iItemSel)
@@ -1017,7 +1017,7 @@ BOOL CZTab::OnRButtonUp(WPARAM wParam, LPARAM lParam)
 		case ID_TABS_OPENFOLDER:
 			{
 				char rgch[MAX_PATH * 2];
-				sprintf(rgch, "/select,\"%s\"", pzd->GetFilename());
+				sprintf_s(rgch, "/select,\"%s\"", pzd->GetFilename());
 				::ShellExecute(NULL, "open", "explorer.exe", rgch, NULL, SW_RESTORE);
 				return 0;
 			}

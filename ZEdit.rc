@@ -306,7 +306,7 @@ FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,162,7,35,12
     ICON            IDI_ZEDIT,IDC_STATIC,11,11,20,20
-    LTEXT           "ZEdit Version 1.1.26\n\nCopyright © 2016 by Darrell Zook",IDC_STATIC,43,14,108,28,0,WS_EX_NOPARENTNOTIFY | WS_EX_TRANSPARENT
+    LTEXT           "ZEdit Version 1.1.27\n\nCopyright © 2016 by Darrell Zook",IDC_STATIC,43,14,108,28,0,WS_EX_NOPARENTNOTIFY | WS_EX_TRANSPARENT
     GROUPBOX        "",IDC_STATIC,7,3,148,42
 END
 
@@ -793,8 +793,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,1,26,0
- PRODUCTVERSION 1,1,26,0
+ FILEVERSION 1,1,27,0
+ PRODUCTVERSION 1,1,27,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -811,12 +811,12 @@ BEGIN
         BEGIN
             VALUE "Comments", "A replacement for Notepad"
             VALUE "FileDescription", "ZEdit"
-            VALUE "FileVersion", "1.1.26.0"
+            VALUE "FileVersion", "1.1.27.0"
             VALUE "InternalName", "ZEdit"
             VALUE "LegalCopyright", "Freeware, Copyright © 2016"
             VALUE "OriginalFilename", "ZEdit.exe"
             VALUE "ProductName", "ZEdit"
-            VALUE "ProductVersion", "1.1.26.0"
+            VALUE "ProductVersion", "1.1.27.0"
         END
     END
     BLOCK "VarFileInfo"

@@ -81,9 +81,9 @@ BOOL CALLBACK CZEditFrame::LineProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPAR
 				DWORD dwStartChar = pzd->CharFromPara(dwPara);
 				pzd->SetSelection(dwStartChar, dwStartChar, true, true);
 				if (pzd->GetFileType() == kftBinary)
-					sprintf(szBuffer, "Line %d,  Col 1", dwPara + 1);
+					sprintf_s(szBuffer, "Line %d,  Col 1", dwPara + 1);
 				else
-					sprintf(szBuffer, "Para %d,  Col 1", dwPara + 1);
+					sprintf_s(szBuffer, "Para %d,  Col 1", dwPara + 1);
 				pzef->SetStatusText(ksboLineCol, szBuffer);
 				pzef->Animate(hwndDlg, ksboLineCol, false, false);
 				::EndDialog(hwndDlg, 1);
@@ -540,17 +540,17 @@ BOOL CALLBACK CZEditFrame::PageProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPAR
 			char szNumber[10] = {0};
 			::SetDlgItemText(hwndDlg, IDC_HEADER, g_fg.m_szPrintStrings[0]);
 			::SetDlgItemText(hwndDlg, IDC_FOOTER, g_fg.m_szPrintStrings[1]);
-			sprintf(szNumber, "%0.2f", g_fg.m_rcPrintMargins.left / 1440.0);
+			sprintf_s(szNumber, "%0.2f", g_fg.m_rcPrintMargins.left / 1440.0);
 			::SetDlgItemText(hwndDlg, IDC_LEFT, szNumber);
-			sprintf(szNumber, "%0.2f", g_fg.m_rcPrintMargins.right / 1440.0);
+			sprintf_s(szNumber, "%0.2f", g_fg.m_rcPrintMargins.right / 1440.0);
 			::SetDlgItemText(hwndDlg, IDC_RIGHT, szNumber);
-			sprintf(szNumber, "%0.2f", g_fg.m_rcPrintMargins.top / 1440.0);
+			sprintf_s(szNumber, "%0.2f", g_fg.m_rcPrintMargins.top / 1440.0);
 			::SetDlgItemText(hwndDlg, IDC_TOP, szNumber);
-			sprintf(szNumber, "%0.2f", g_fg.m_rcPrintMargins.bottom / 1440.0);
+			sprintf_s(szNumber, "%0.2f", g_fg.m_rcPrintMargins.bottom / 1440.0);
 			::SetDlgItemText(hwndDlg, IDC_BOTTOM, szNumber);
-			sprintf(szNumber, "%0.2f", g_fg.m_ptHeaderFooter.x / 1440.0);
+			sprintf_s(szNumber, "%0.2f", g_fg.m_ptHeaderFooter.x / 1440.0);
 			::SetDlgItemText(hwndDlg, IDC_HEADER_MARGIN, szNumber);
-			sprintf(szNumber, "%0.2f", g_fg.m_ptHeaderFooter.y / 1440.0);
+			sprintf_s(szNumber, "%0.2f", g_fg.m_ptHeaderFooter.y / 1440.0);
 			::SetDlgItemText(hwndDlg, IDC_FOOTER_MARGIN, szNumber);
 
 			::SetWindowLong(hwndDlg, GWL_USERDATA, lParam);
@@ -978,9 +978,9 @@ BOOL CALLBACK CZEditFrame::FileManagerProc(HWND hwndDlg, UINT uMsg, WPARAM wPara
 			char szFilename[MAX_PATH];
 			while (pzd)
 			{
-				strcpy(szFilename, pzd->GetFilename());
+				strcpy_s(szFilename, pzd->GetFilename());
 				if (pzd->GetModify())
-					strcat(szFilename, " *");
+					strcat_s(szFilename, " *");
 				lvi.pszText = szFilename;
 				lvi.iImage = pzd->GetImageIndex();
 				lvi.lParam = (LPARAM)pzd;
@@ -1149,13 +1149,13 @@ char * PrintNumber(UINT cBytes, char szBuffer[20])
 	UINT cPartB = (cBytes / 1000000000) % 1000;
 
 	if (cBytes < 1000)
-		sprintf(szBuffer, "%d", cBytes);
+		sprintf_s(szBuffer, 20, "%d", cBytes);
 	else if (cBytes < 1000000)
-		sprintf(szBuffer, "%d,%03d", cPartT, cPart);
+		sprintf_s(szBuffer, 20, "%d,%03d", cPartT, cPart);
 	else if (cBytes < 1000000000)
-		sprintf(szBuffer, "%d,%03d,%03d", cPartM, cPartT, cPart);
+		sprintf_s(szBuffer, 20, "%d,%03d,%03d", cPartM, cPartT, cPart);
 	else
-		sprintf(szBuffer, "%d,%03d,%03d,%03d", cPartB, cPartM, cPartT, cPart);
+		sprintf_s(szBuffer, 20, "%d,%03d,%03d,%03d", cPartB, cPartM, cPartT, cPart);
 	return szBuffer;
 }
 
@@ -1173,17 +1173,17 @@ char * BytesToString(DWORD dwBytes, char szBuffer[100], char * pszFilename)
 	DWORD dwBytesUsed = ((dwBytes / si.dwPageSize) + 1) * si.dwPageSize;
 	if (dwBytes < 1024)
 	{
-		sprintf(szBuffer, "%d bytes (%s bytes), %s bytes used", dwBytes,
+		sprintf_s(szBuffer, 100, "%d bytes (%s bytes), %s bytes used", dwBytes,
 			PrintNumber(dwBytes, szPart1), PrintNumber(dwBytesUsed, szPart2));
 	}
 	else if (dwBytes < 1048576)
 	{
-		sprintf(szBuffer, "%dKB (%s bytes), %s bytes used", dwBytes / 1024,
+		sprintf_s(szBuffer, 100, "%dKB (%s bytes), %s bytes used", dwBytes / 1024,
 			PrintNumber(dwBytes, szPart1), PrintNumber(dwBytesUsed, szPart2));
 	}
 	else
 	{
-		sprintf(szBuffer, "%.2fMB (%s bytes), %s bytes used", (double)dwBytes / 1048576,
+		sprintf_s(szBuffer, 100, "%.2fMB (%s bytes), %s bytes used", (double)dwBytes / 1048576,
 			PrintNumber(dwBytes, szPart1), PrintNumber(dwBytesUsed, szPart2));
 	}
 	return szBuffer;
@@ -1221,7 +1221,7 @@ BOOL CALLBACK CZEditFrame::PropertiesPropPageProc(HWND hwndDlg, UINT uMsg, WPARA
 				(WPARAM)shfi.hIcon, 0);
 
 			char szFilename[MAX_PATH];
-			strcpy(szFilename, pszFilename);
+			strcpy_s(szFilename, pszFilename);
 			char * pSlash = strrchr(szFilename, '\\');
 			if (pSlash == szFilename + 2)
 				pSlash++;
@@ -1273,23 +1273,23 @@ BOOL CALLBACK CZEditFrame::PropertiesPropPageProc(HWND hwndDlg, UINT uMsg, WPARA
 
 			::FileTimeToLocalFileTime(&ftCreation, &ftCreationLcl);
 			::FileTimeToSystemTime(&ftCreationLcl, &st);
-			sprintf(szBuffer, "%s, %s %02d, %d %d:%02d:%02d ", kpszDays[st.wDayOfWeek],
+			sprintf_s(szBuffer, "%s, %s %02d, %d %d:%02d:%02d ", kpszDays[st.wDayOfWeek],
 				kpszMonths[st.wMonth], st.wDay, st.wYear, st.wHour % 12, st.wMinute,
 				st.wSecond);
-			strcat(szBuffer, st.wHour < 12 ? "AM" : "PM");
+			strcat_s(szBuffer, st.wHour < 12 ? "AM" : "PM");
 			::SetDlgItemText(hwndDlg, IDC_CREATED, szBuffer);
 
 			::FileTimeToLocalFileTime(&ftLastWrite, &ftLastWriteLcl);
 			::FileTimeToSystemTime(&ftLastWriteLcl, &st);
-			sprintf(szBuffer, "%s, %s %02d, %d %d:%02d:%02d ", kpszDays[st.wDayOfWeek],
+			sprintf_s(szBuffer, "%s, %s %02d, %d %d:%02d:%02d ", kpszDays[st.wDayOfWeek],
 				kpszMonths[st.wMonth], st.wDay, st.wYear, st.wHour % 12, st.wMinute,
 				st.wSecond);
-			strcat(szBuffer, st.wHour < 12 ? "AM" : "PM");
+			strcat_s(szBuffer, st.wHour < 12 ? "AM" : "PM");
 			::SetDlgItemText(hwndDlg, IDC_MODIFIED, szBuffer);
 
 			::FileTimeToLocalFileTime(&ftLastAccess, &ftLastAccessLcl);
 			::FileTimeToSystemTime(&ftLastAccessLcl, &st);
-			sprintf(szBuffer, "%s, %s %02d, %d", kpszDays[st.wDayOfWeek],
+			sprintf_s(szBuffer, "%s, %s %02d, %d", kpszDays[st.wDayOfWeek],
 				kpszMonths[st.wMonth], st.wDay, st.wYear);
 			::SetDlgItemText(hwndDlg, IDC_ACCESSED, szBuffer);
 
@@ -1398,9 +1398,9 @@ BOOL CALLBACK CZEditFrame::StatisticsPropPageProc(HWND hwndDlg, UINT uMsg, WPARA
 
 		char szBuffer[100];
 		char szNumber[20];
-		sprintf(szBuffer, "%s ms", PrintNumber(pzd->GetTimeToLoad(), szNumber));
+		sprintf_s(szBuffer, "%s ms", PrintNumber(pzd->GetTimeToLoad(), szNumber));
 		::SetDlgItemText(hwndDlg, IDC_LOADTIME, szBuffer);
-		sprintf(szBuffer, "%s KB", PrintNumber(pzd->GetMemoryUsed() / 1024, szNumber));
+		sprintf_s(szBuffer, "%s KB", PrintNumber(pzd->GetMemoryUsed() / 1024, szNumber));
 		::SetDlgItemText(hwndDlg, IDC_MEMORY, szBuffer);
 
 		return TRUE;
@@ -1442,7 +1442,7 @@ BOOL CALLBACK CZEditFrame::ColumnProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LP
 			for (lvi.iItem = 0; lvi.iItem < cItems; lvi.iItem++)
 			{
 				lvi.iSubItem = 0;
-				_itoa(g_fg.m_vpcm[lvi.iItem]->m_iColumn, szCol, 10);
+				_itoa_s(g_fg.m_vpcm[lvi.iItem]->m_iColumn, szCol, 10);
 				ListView_InsertItem(hwndList, &lvi);
 			}
 			if (cItems == 0)
@@ -1523,7 +1523,7 @@ BOOL CALLBACK CZEditFrame::ColumnProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LP
 						int iColumn = min(1000, atoi(pndi->item.pszText));
 						g_fg.m_vpcm[pndi->item.iItem]->m_iColumn = iColumn;
 						char szCol[6];
-						_itoa(iColumn, szCol, 10);
+						_itoa_s(iColumn, szCol, 10);
 						LVITEM lvi = { LVIF_TEXT, pndi->item.iItem };
 						lvi.pszText = szCol;
 						ListView_SetItem(hwndList, &lvi);
@@ -1627,11 +1627,12 @@ BOOL CALLBACK CZEditFrame::EnterCharacterProc(HWND hwndDlg, UINT uMsg, WPARAM wP
 							AssertPtr(pzv);
 							HWND hwndEditor = pzv->GetHwnd();
 							::GetDlgItemText(hwndDlg, IDC_VALUES, rgchText, cch + 1);
-							char * prgchPos = strtok(rgchText, " ,");
+							char * prgchPos;
+							strtok_s(rgchText, " ,", &prgchPos);
 							long lChar = 0;
 							while (prgchPos)
 							{
-								if (sscanf(prgchPos, "%x", &lChar) == 1)
+								if (sscanf_s(prgchPos, "%x", &lChar) == 1)
 								{
 									if (pzd->GetFileType() == kftAnsi)
 									{
@@ -1661,7 +1662,7 @@ BOOL CALLBACK CZEditFrame::EnterCharacterProc(HWND hwndDlg, UINT uMsg, WPARAM wP
 										}
 									}
 								}
-								prgchPos = strtok(NULL, " ,");
+								strtok_s(NULL, " ,", &prgchPos);
 							}
 							// Save the entered text for next time this dialog is opened.
 							::GetDlgItemText(hwndDlg, IDC_VALUES, rgchText, cch + 1);

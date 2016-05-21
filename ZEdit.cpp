@@ -875,10 +875,11 @@ bool CZEditFrame::UpdateRegistry()
 		pPos = prgch = new char[cch + 2];
 	if (prgch)
 	{
+		char * pLim = prgch + cch + 2;
 		::ZeroMemory(prgch, cch);
-		strcat(pPos, g_fg.m_szPrintStrings[0]);
+		strcat_s(pPos, pLim - pPos, g_fg.m_szPrintStrings[0]);
 		pPos += strlen(pPos) + 1;
-		strcat(pPos, g_fg.m_szPrintStrings[1]);
+		strcat_s(pPos, pLim - pPos, g_fg.m_szPrintStrings[1]);
 		::RegSetValueEx(hkey, "Print Strings", 0, REG_BINARY, (BYTE *)prgch, cch + 2);
 		delete prgch;
 		prgch = NULL;
@@ -890,8 +891,9 @@ bool CZEditFrame::UpdateRegistry()
 
 	// Put the column markers in the registry
 	int ccm = g_fg.m_vpcm.size();
+	int cchMarker = ccm * 15 + 1;
 	if (ccm)
-		prgch = new char[ccm * 15 + 1];
+		prgch = new char[cchMarker];
 	if (prgch)
 	{
 		*prgch = 0;
@@ -900,8 +902,8 @@ bool CZEditFrame::UpdateRegistry()
 		{
 			CColumnMarker * pcm = g_fg.m_vpcm[icm];
 			AssertPtr(pcm);
-			sprintf(szcm, "%d %d ", pcm->m_iColumn, pcm->m_cr);
-			strcat(prgch, szcm);
+			sprintf_s(szcm, "%d %d ", pcm->m_iColumn, pcm->m_cr);
+			strcat_s(prgch, cchMarker, szcm);
 		}
 		int cch = strlen(prgch) - 1;
 		Assert(cch > 0);
@@ -1384,7 +1386,7 @@ void CZEditFrame::AddOpenDocumentToMenu(HMENU hMenu)
 			lstrcpyn(m_szContextFile, (char *)pv, MAX_PATH);
 			char szItem[MAX_PATH + 17];
 			wsprintf(szItem, "Open Document \"%s\"", wfd.cFileName);
-			strncpy(pmi->szItemText, szItem, sizeof(pmi->szItemText));
+			strncpy_s(pmi->szItemText, szItem, sizeof(pmi->szItemText));
 			::FindClose(hSearch);
 		}
 		delete pv;
@@ -1396,7 +1398,7 @@ void CZEditFrame::AddOpenDocumentToMenu(HMENU hMenu)
 	}
 	else
 	{
-		strcpy(pmi->szItemText, "Open Document");
+		strcpy_s(pmi->szItemText, "Open Document");
 		uFlags |= MF_DISABLED;
 	}
 	// This is necessary so that Windows will send the WM_MEASUREITEM message again.
@@ -1523,7 +1525,7 @@ void CZEditFrame::SetStatusText(int ksbo, const char * pszText)
 		else
 		{
 			nDiff = rgnWidth[ksbo - 1] + size.cx - rgnWidth[ksbo];
-			strcat(szText, "\t"); // This is used to center the text in the part
+			strcat_s(szText, "\t"); // This is used to center the text in the part
 		}
 
 		// Add this difference to all the following parts and set the parts to the new sizes
@@ -1533,7 +1535,7 @@ void CZEditFrame::SetStatusText(int ksbo, const char * pszText)
 		::SendMessage(m_hwndStatus, SB_SETPARTS, sizeof(rgnWidth) / sizeof(int),
 			(LPARAM)rgnWidth);
 
-		strcat(szText, pszText);
+		strcat_s(szText, pszText);
 		::SendMessage(m_hwndStatus, SB_SETTEXT, ksbo, (long)szText);
 	}
 }
@@ -1887,15 +1889,15 @@ bool CColorSchemes::Load()
 		// The registry key did not exist or specified an invalid file, so try to
 		// find the default file in the current directory.
 		::GetCurrentDirectory(sizeof(szFilename), szFilename);
-		strcat(szFilename, "\\");
-		strcat(szFilename, "ZEditColors.txt");
+		strcat_s(szFilename, "\\");
+		strcat_s(szFilename, "ZEditColors.txt");
 		if (stat(szFilename, &sFile) == -1)
 		{
 			::GetModuleFileName(NULL, szFilename, sizeof(szFilename));
 			char * pSlash = strrchr(szFilename, '\\');
 			if (pSlash)
 				pSlash[1] = 0;
-			strcat(szFilename, "ZEditColors.txt");
+			strcat_s(szFilename, "ZEditColors.txt");
 			if (stat(szFilename, &sFile) == -1)
 				fFoundFile = false;
 		}
@@ -1905,7 +1907,7 @@ bool CColorSchemes::Load()
 	ColorSchemeInfo * pcsiNew;
 	if (fFoundFile &&
 		sFile.st_size >= 0 &&
-		(pfile = fopen(szFilename, "rb")) != NULL &&
+		fopen_s(&pfile, szFilename, "rb") == 0 &&
 		(m_pszFileText = new char[sFile.st_size + 2]) != NULL &&
 		fread(m_pszFileText, 1, sFile.st_size, pfile) == sFile.st_size)
 	{
@@ -1979,7 +1981,7 @@ ColorSchemeInfo * CColorSchemes::GetColorScheme(char * pszExt)
 	if (pszExt)
 	{
 		char szExt[MAX_PATH];
-		strcpy(szExt, pszExt);
+		strcpy_s(szExt, pszExt);
 		char * pT = szExt - 1;
 		while (*++pT)
 			*pT = tolower(*pT);
@@ -2229,7 +2231,8 @@ int CFileGlobals::SetColumnMarkerPos(CZEditFrame * pzef, HWND hwnd, POINT point,
 		Assert((UINT)g_fg.m_iColumnDrag < (UINT)g_fg.m_vpcm.size());
 		char szText[10];
 		TOOLINFO ti = {sizeof(ti)};
-		ti.lpszText = _itoa(iNewColumn, szText, 10);
+		_itoa_s(iNewColumn, szText, 10);
+		ti.lpszText = szText;
 		ti.hwnd = pzef->GetHwnd();
 		ti.uId = (UINT)pzef->GetCurrentDoc()->GetCurrentView()->GetHwnd();
 		::SendMessage(m_hwndToolTip, TTM_UPDATETIPTEXT, 0, (LPARAM)&ti);

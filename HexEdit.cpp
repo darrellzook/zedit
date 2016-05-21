@@ -249,7 +249,7 @@ bool CHexEdit::DrawLine(ParaDrawInfo * ppdi)
 	char * pszLine = new char[m_nTotalWidth];
 	if (!pszLine)
 		return false;
-	sprintf(pszLine, "%08X  ", LineFromChar(ppdi->ich) * m_cchPerLine);
+	sprintf_s(pszLine, m_nTotalWidth, "%08X  ", LineFromChar(ppdi->ich) * m_cchPerLine);
 	char * prgch = pszLine + 10;
 	char * prgchText = prgch + (m_cchPerLine * 3) + 1;
 	int nShift = m_pzd->IsAnsi(ppdi->pdp, ppdi->iprInPart) ? 0 : 1;
@@ -508,7 +508,7 @@ SelectionType CHexEdit::GetSelection(UINT * piStart, UINT * piStop)
 ----------------------------------------------------------------------------------------------*/
 char * CHexEdit::GetCurPosString()
 {
-	strcpy(m_szCurPos, "Fix this.");
+	strcpy_s(m_szCurPos, "Fix this.");
 	return m_szCurPos;
 }
 
@@ -827,7 +827,7 @@ void CHexEdit::ShowText(HDC hdcScreen, RECT & rect)
 	if (!(m_pzd->GetCharCount() % m_cchPerLine))
 	{
 		char szText[9];
-		sprintf(szText, "%08X", LineFromChar(pdi.ich) * m_cchPerLine);
+		sprintf_s(szText, "%08X", LineFromChar(pdi.ich) * m_cchPerLine);
 		::TextOut(hdcScreen, 0, 0, szText, 8);
 	}
 

@@ -197,7 +197,7 @@ long CZEditFrame::OnCommand(WPARAM wParam, LPARAM lParam)
 
 	case ID_FILE_OPEN:
 		{
-			char szFilename[4000] = {0};
+			char szFilename[MAX_PATH] = {0};
 			FileType ft = GetFile(FALSE, szFilename);
 			if (ft == kftAnsi)
 				ft = kftDefault;
@@ -346,11 +346,12 @@ long CZEditFrame::OnDropFiles(HDROP hDropInfo, BOOL fContext)
 	{
 		if (ID_OPENAS_FILENAME != nCommand && ID_OPENAS_PATHNAME != nCommand)
 			return 0;
-		char * pszText = new char[(MAX_PATH + 2) * cFiles + 1];
+		int cchText = (MAX_PATH + 2) * cFiles + 1;
+		char * pszText = new char[cchText];
 		if (pszText)
 		{
+			pszText[0] = 0;
 			char szFilename[MAX_PATH];
-			char * pPos = pszText;
 			for (int iFile = 0; iFile < cFiles; iFile++)
 			{
 				DragQueryFile(hDropInfo, iFile, szFilename, MAX_PATH);
@@ -359,17 +360,14 @@ long CZEditFrame::OnDropFiles(HDROP hDropInfo, BOOL fContext)
 					char * pSlash = strrchr(szFilename, '\\');
 					if (!pSlash)
 						pSlash = szFilename - 1;
-					strcpy(pPos, pSlash + 1);
+					strcat_s(pszText, cchText, pSlash + 1);
 				}
 				else // Insert Pathname(s)
 				{
-					strcpy(pPos, szFilename);
+					strcat_s(pszText, cchText, szFilename);
 				}
-				pPos += strlen(pPos);
-				*pPos++ = 13;
-				*pPos++ = 10;
+				strcat_s(pszText, cchText, "\r\n");
 			}
-			*pPos = 0;
 
 			UINT ichSelStart;
 			UINT ichSelStop;
@@ -416,13 +414,13 @@ long CZEditFrame::OnInitMenuPopup(HMENU hMenu, UINT nIndex, BOOL fSysMenu)
 
 		case 2: // Options submenu
 			::CheckMenuItem(hMenu, ID_OPTIONS_WRAP,
-				MF_BYCOMMAND | m_pzdCurrent->GetWrap() ? MF_CHECKED : MF_UNCHECKED);
+				MF_BYCOMMAND | (m_pzdCurrent->GetWrap() ? MF_CHECKED : MF_UNCHECKED));
 			::CheckMenuItem(hMenu, ID_OPTIONS_DEFAULTENC_ANSI,
-				MF_BYCOMMAND | g_fg.m_defaultEncoding == kftAnsi ? MF_CHECKED : MF_UNCHECKED);
+				MF_BYCOMMAND | (g_fg.m_defaultEncoding == kftAnsi ? MF_CHECKED : MF_UNCHECKED));
 			::CheckMenuItem(hMenu, ID_OPTIONS_DEFAULTENC_UTF8,
-				MF_BYCOMMAND | g_fg.m_defaultEncoding == kftUnicode8 ? MF_CHECKED : MF_UNCHECKED);
+				MF_BYCOMMAND | (g_fg.m_defaultEncoding == kftUnicode8 ? MF_CHECKED : MF_UNCHECKED));
 			::CheckMenuItem(hMenu, ID_OPTIONS_DEFAULTENC_UTF16,
-				MF_BYCOMMAND | g_fg.m_defaultEncoding == kftUnicode16 ? MF_CHECKED : MF_UNCHECKED);
+				MF_BYCOMMAND | (g_fg.m_defaultEncoding == kftUnicode16 ? MF_CHECKED : MF_UNCHECKED));
 			break;
 
 		case 3: // Tools submenu
@@ -456,13 +454,13 @@ long CZEditFrame::OnInitMenuPopup(HMENU hMenu, UINT nIndex, BOOL fSysMenu)
 					if (cFile < 9)
 					{
 						szFilename[0] = '&';
-						_itoa(cFile + 1, szFilename + 1, 10);
+						_itoa_s(cFile + 1, szFilename + 1, MAX_PATH - 1, 10);
 						szFilename[2] = ' ';
 						szFilename[3] = 0;
 					}
 					if (cFile == 9)
-						strcpy(szFilename, "1&0 ");
-					strcat(szFilename, pzd->GetFilename());
+						strcpy_s(szFilename, "1&0 ");
+					strcat_s(szFilename, pzd->GetFilename());
 					if (pzd->GetModify())
 						lstrcat(szFilename, " *");
 					::InsertMenu(hMenu, ID_WINDOW_MANAGER, MF_BYCOMMAND | MF_STRING,
@@ -633,7 +631,7 @@ long CZEditFrame::OnFileProperties(CZDoc * pzd)
 
 	char szCaption[MAX_PATH];
 	char * pSlash = strrchr(pzd->GetFilename(), '\\');
-	sprintf(szCaption, "%s Properties", pSlash ? pSlash + 1 : pzd->GetFilename());
+	sprintf_s(szCaption, "%s Properties", pSlash ? pSlash + 1 : pzd->GetFilename());
 	psh.pszCaption = szCaption;
 
 	::PropertySheet(&psh);

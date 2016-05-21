@@ -402,10 +402,12 @@ bool CFindDlg::ShowDialog(bool fReplace)
 		{
 			if (pzd->GetFileType() != kftAnsi)
 			{
-				char * prgchBuffer = new char[cch << 3];
+				int cchBuffer = cch << 3;
+				char * prgchBuffer = new char[cchBuffer];
 				if (prgchBuffer)
 				{
 					char * prgchDst = prgchBuffer;
+					char * prgchLim = prgchDst + cchBuffer;
 					wchar * prgwchSrc = (wchar *)pv;
 					// Include NULL character at the end.
 					wchar * prgwchStop = prgwchSrc + cch + 1;
@@ -416,7 +418,7 @@ bool CFindDlg::ShowDialog(bool fReplace)
 						{
 							*prgchDst++ = '^';
 							*prgchDst++ = 'x';
-							prgchDst += sprintf(prgchDst, "%x", ch);
+							prgchDst += sprintf_s(prgchDst, prgchLim - prgchDst, "%x", ch);
 							*prgchDst++ = ';';
 						}
 						else
@@ -500,7 +502,9 @@ LRESULT CALLBACK CFindDlg::NewComboEditWndProc(HWND hwnd, UINT iMsg, WPARAM wPar
 					wchar * pszSrc = (wchar *)::GlobalLock(hData);
 					if (pszSrc != NULL)
 					{
-						char * pszDst = new char[wcslen(pszSrc) * 10 + 1];
+						int cchDst = wcslen(pszSrc) * 10 + 1;
+						char * pszDst = new char[cchDst];
+						char * pszLim = pszDst + cchDst;
 						wchar * prgchSrc = pszSrc;
 						char * prgchDst = pszDst;
 						wchar ch;
@@ -510,7 +514,7 @@ LRESULT CALLBACK CFindDlg::NewComboEditWndProc(HWND hwnd, UINT iMsg, WPARAM wPar
 							{
 								*prgchDst++ = '^';
 								*prgchDst++ = 'x';
-								prgchDst += sprintf(prgchDst, "%x", ch);
+								prgchDst += sprintf_s(prgchDst, pszLim - prgchDst, "%x", ch);
 								*prgchDst++ = ';';
 							}
 							else
@@ -738,7 +742,7 @@ bool CFindDlg::UpdateFindInfo()
 
 	// Uppercase the search string if the search is not case sensitive
 	if (fSuccess && !(m_fi.nFlags & kffMatchCase))
-		wcsupr(m_fi.pwszFindWhat);
+		_wcsupr_s(m_fi.pwszFindWhat, m_fi.cchFindWhat + 1);
 
 	return fSuccess;
 }
@@ -1429,7 +1433,7 @@ BOOL CALLBACK CFindFilesDlg::FindResultsProc(HWND hwndDlg, UINT uMsg, WPARAM wPa
 			}
 			::MoveWindow(hwndDlg, rect.left, rect.top, rect.right - rect.left,
 				rect.bottom - rect.top, TRUE);
-			if (sscanf(szWidths, "%d %d %d %d", &nWidths[0], &nWidths[1], &nWidths[2],
+			if (sscanf_s(szWidths, "%d %d %d %d", &nWidths[0], &nWidths[1], &nWidths[2],
 				&nWidths[3]) != 4)
 			{
 				::GetClientRect(hwndList, &rect);
@@ -1635,7 +1639,7 @@ BOOL CALLBACK CFindFilesDlg::FindResultsProc(HWND hwndDlg, UINT uMsg, WPARAM wPa
 					if (pnmv->item.iSubItem == 1)
 						pnmv->item.pszText = pff->m_szFilename;
 					if (pnmv->item.iSubItem == 2)
-						ltoa(pff->m_dwLine, pnmv->item.pszText, 10);
+						_ltoa_s(pff->m_dwLine, pnmv->item.pszText, pnmv->item.cchTextMax, 10);
 					if (pnmv->item.iSubItem == 3)
 						pnmv->item.pszText = pff->m_pszLine;
 					return TRUE;
@@ -1685,7 +1689,7 @@ BOOL CALLBACK CFindFilesDlg::FindResultsProc(HWND hwndDlg, UINT uMsg, WPARAM wPa
 
 								AddString(prgch, pchCur, pchMax, cchSize, pff->m_pszFile, "\t");
 								AddString(prgch, pchCur, pchMax, cchSize, pff->m_szFilename, "\t");
-								ltoa(pff->m_dwLine, rgchLine, 10);
+								_ltoa_s(pff->m_dwLine, rgchLine, 10);
 								AddString(prgch, pchCur, pchMax, cchSize, rgchLine, "\t");
 								AddString(prgch, pchCur, pchMax, cchSize, pff->m_pszLine, "\r\n");
 							}
@@ -1754,8 +1758,8 @@ void CFindFilesDlg::AddString(char *& prgch, char *& pchCur, char *& pchMax,
 		pchCur = prgch + cchCur;
 		pchMax = prgch + cchSize;
 	}
-	strncpy(pchCur, psz, cch);
-	strncpy(pchCur + cch, pszExtra, cchExtra);
+	strncpy_s(pchCur, pchMax - pchCur, psz, cch);
+	strncpy_s(pchCur + cch, pchMax - pchCur, pszExtra, cchExtra);
 	pchCur += cch + cchExtra;
 	*pchCur = 0;
 }
@@ -1809,7 +1813,7 @@ bool CFindFilesDlg::ShowDialog()
 
 		// Initialize the starting directory
 		char szDir[MAX_PATH];
-		strcpy(szDir, m_pzef->GetCurrentDoc()->GetFilename());
+		strcpy_s(szDir, m_pzef->GetCurrentDoc()->GetFilename());
 		char * pSlash = strrchr(szDir, '\\');
 		if (pSlash)
 			*pSlash = 0;
@@ -1833,8 +1837,8 @@ bool CFindFilesDlg::ShowDialog()
 	// Load filter options from the registry.
 	HKEY hkey;
 	char szRegKey[MAX_PATH] = { 0 };
-	strcpy(szRegKey, kpszRootRegKey);
-	strcat(szRegKey, "\\FindFilters");
+	strcpy_s(szRegKey, kpszRootRegKey);
+	strcat_s(szRegKey, "\\FindFilters");
 	int iFilter = 0;
 	if (::RegOpenKeyEx(HKEY_CURRENT_USER, szRegKey, 0, KEY_READ, &hkey) ==
 		ERROR_SUCCESS)
@@ -1887,8 +1891,10 @@ bool CFindFilesDlg::ShowDialog()
 		UINT cch = pzd->GetText(ichSelStart, ichSelStop - ichSelStart, &pv);
 		if (pzd->GetFileType() != kftAnsi)
 		{
-			char * pBuffer = new char[cch << 3];
+			int cchBuffer = cch << 3;
+			char * pBuffer = new char[cchBuffer];
 			char * pDst = pBuffer;
+			char * pLim = pDst + cchBuffer;
 			wchar * pSrc = (wchar *)pv;
 			wchar * pStop = pSrc + cch + 1;
 			long ch;
@@ -1898,7 +1904,7 @@ bool CFindFilesDlg::ShowDialog()
 				{
 					*pDst++ = '^';
 					*pDst++ = 'x';
-					pDst += sprintf(pDst, "%x", ch);
+					pDst += sprintf_s(pDst, pLim - pDst, "%x", ch);
 					*pDst++ = ';';
 				}
 				else
@@ -2013,15 +2019,15 @@ bool CFindFilesDlg::StartFind(HWND hwndDlg)
 			delete pfifi;
 			return false;
 		}
-		strcpy(pfifi->m_pszFileTypes, "*.*");
+		strcpy_s(pfifi->m_pszFileTypes, cch + 1, "*.*");
 	}
 
 	// Save the selected file type setting to the registry.
 	HKEY hkey;
 	DWORD dwT;
 	char szRegKey[MAX_PATH] = { 0 };
-	strcpy(szRegKey, kpszRootRegKey);
-	strcat(szRegKey, "\\FindFilters");
+	strcpy_s(szRegKey, kpszRootRegKey);
+	strcat_s(szRegKey, "\\FindFilters");
 	if (::RegCreateKeyEx(HKEY_CURRENT_USER, szRegKey, 0, NULL, 0, KEY_WRITE, NULL,
 		&hkey, &dwT) == ERROR_SUCCESS)
 	{

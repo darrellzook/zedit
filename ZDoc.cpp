@@ -693,9 +693,9 @@ bool CZDoc::FixLines(int nParaType)
 		m_fModified = true;
 		char szMessage[MAX_PATH];
 		if (cchParasModified == 1)
-			strcpy(szMessage, "1 paragraph was modified.");
+			strcpy_s(szMessage, "1 paragraph was modified.");
 		else
-			sprintf(szMessage, "%s paragraphs were modified.", CZEditFrame::InsertComma(cchParasModified));
+			sprintf_s(szMessage, "%s paragraphs were modified.", CZEditFrame::InsertComma(cchParasModified));
 		::MessageBox(NULL, szMessage, "ZEdit", MB_ICONINFORMATION);
 	}
 	return true;
@@ -841,7 +841,7 @@ bool CZDoc::DeleteText(UINT ichMin, UINT ichStop, bool fClearRedo, bool fRedraw)
 	if (totalcalls < 3500)
 	{
 		char szMsg[4000];
-		sprintf(szMsg, "DeleteText - %d\n", totalcalls);
+		sprintf_s(szMsg, "DeleteText - %d\n", totalcalls);
 		OutputDebugString(szMsg);
 	}
 	//OutputDebugString("DeleteText\n");
@@ -2794,7 +2794,7 @@ void CZDoc::UpdateModified(int iFile, bool fForceUpdate)
 		char szBuffer[MAX_PATH];
 		lstrcpy(szBuffer, m_szFilename);
 		if (m_fModified)
-			strcat(szBuffer, " *");
+			strcat_s(szBuffer, " *");
 
 		if (m_pzef->GetTabMgrHwnd())
 		{
@@ -2856,7 +2856,7 @@ bool CZDoc::OpenFile(char * pszFilename, CZFrame * pzf, HWND hwndProgress)
 
 		AttachFrame(pzf);
 	}
-	if (!stricmp(pszFilename, "Untitled"))
+	if (!_stricmp(pszFilename, "Untitled"))
 	{
 		if (m_ft == kftDefault || m_ft == kftNone)
 			//m_ft = kftAnsi;
@@ -3327,15 +3327,15 @@ bool CZDoc::ParseHFString(char * pszPrint, char szResult[3][100], HeaderFooterIn
 			else if (ch == 'r')
 				prgch = szResult[2];
 			else if (ch == 'f')
-				strcpy(prgch, phfi->pszFilename);
+				strcpy_s(prgch, 100, phfi->pszFilename);
 			else if (ch == 'p')
-				strcpy(prgch, phfi->pszPathname);
+				strcpy_s(prgch, 100, phfi->pszPathname);
 			else if (ch == 'g')
-				_itoa(phfi->iPage, prgch, 10);
+				_itoa_s(phfi->iPage, prgch, 100, 10);
 			else if (ch == 't')
-				strcpy(prgch, phfi->pszTime);
+				strcpy_s(prgch, 100, phfi->pszTime);
 			else if (ch == 'd')
-				strcpy(prgch, phfi->pszDate);
+				strcpy_s(prgch, 100, phfi->pszDate);
 			else
 			{
 				*prgch++ = '^';
@@ -3528,7 +3528,7 @@ bool CZDoc::SaveFile(char * pszFilename, FileType ft, HWND hwndProgress)
 
 #ifdef _DEBUG
 	struct _timeb time1, time2;
-	_ftime(&time1);
+	_ftime_s(&time1);
 #endif // _DEBUG
 
 	bool fSuccess;
@@ -3562,8 +3562,8 @@ bool CZDoc::SaveFile(char * pszFilename, FileType ft, HWND hwndProgress)
 	m_ft = ft;
 
 #ifdef _DEBUG
-	_ftime(&time2);
-	DWORD ms = ((time2.time - time1.time) * 1000) + time2.millitm - time1.millitm;
+	_ftime_s(&time2);
+	DWORD ms = (DWORD)(((time2.time - time1.time) * 1000) + time2.millitm - time1.millitm);
 #endif // _DEBUG
 
 	m_fModified = false;
@@ -3596,13 +3596,13 @@ bool CZDoc::SaveFile(char * pszFilename, FileType ft, HWND hwndProgress)
 	char szMessage[MAX_PATH];
 	if (!::CopyFile(szTempFile, pszFilename, false))
 	{
-		sprintf(szMessage, "The temp file could not be copied over the old file. Error = %d", GetLastError());
+		sprintf_s(szMessage, "The temp file could not be copied over the old file. Error = %d", GetLastError());
 		::MessageBox(NULL, szMessage, "ZEdit", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
 	if (!::DeleteFile(szTempFile))
 	{
-		sprintf(szMessage, "The temp file could not be deleted. Error = %d", GetLastError());
+		sprintf_s(szMessage, "The temp file could not be deleted. Error = %d", GetLastError());
 		::MessageBox(NULL, szMessage, "ZEdit", MB_OK | MB_ICONEXCLAMATION);
 		return false;
 	}
