@@ -1,0 +1,965 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_LINK                CURSOR                  "hotspot.cur"
+IDC_SCROLL_DOWN         CURSOR                  "scroll_d.cur"
+IDC_SCROLL_UP           CURSOR                  "scroll_u.cur"
+IDC_SCROLL_MIDDLE       CURSOR                  "scroll_m.cur"
+IDC_MOVEFILE            CURSOR                  "MoveFile.cur"
+IDC_NEWZEDIT            CURSOR                  "NewZEdit.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TOOLBAR             BITMAP                  "Toolbar.bmp"
+IDB_TOOLBAR_256         BITMAP                  "ToolBar256.bmp"
+IDB_TOOLBAR_DISABLED    BITMAP                  "ToolBarDisabled.bmp"
+IDB_SCROLL              BITMAP                  "scroll.bmp"
+IDB_COLUMN_LINE         BITMAP                  "ColumnLine.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ZEDIT               ICON                    "ZEdit.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINMENU MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEWTYPE
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+        MENUITEM "Close All",                   ID_FILE_CLOSEALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVEAS
+        MENUITEM "Save A&ll",                   ID_FILE_SAVEALL
+        MENUITEM SEPARATOR
+        MENUITEM "Page Set&up...",              ID_FILE_PAGESETUP
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM SEPARATOR
+        MENUITEM "P&roperties",                 ID_FILE_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo Spelling Change\tCtrl+Z", ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "&Find...\tCtrl+F",            ID_EDIT_FIND
+        MENUITEM "R&eplace\tCtrl+R",            ID_EDIT_REPLACE
+        MENUITEM SEPARATOR
+        MENUITEM "Select A&ll   \tCtrl+A",      ID_EDIT_SELECTALL
+    END
+    POPUP "&Options"
+    BEGIN
+        MENUITEM "&Font...",                    ID_OPTIONS_FONT
+        MENUITEM "&Tabs...",                    ID_OPTIONS_TAB
+        MENUITEM "&Column Markers...",          ID_OPTIONS_COLUMNS
+        MENUITEM SEPARATOR
+        MENUITEM "&Go To Line...\tCtrl+G",      ID_OPTIONS_GOTO
+        MENUITEM SEPARATOR
+        POPUP "&ReOpen As"
+        BEGIN
+            MENUITEM "&ANSI",                       ID_OPENAS_ANSI
+            MENUITEM SEPARATOR
+            MENUITEM "Unicode (UTF-&8)",            ID_OPENAS_UTF8
+            MENUITEM "Unicode (UTF-&16)",           ID_OPENAS_UTF16
+        END
+        POPUP "Default Encoding"
+        BEGIN
+            MENUITEM "ANSI",                        ID_OPTIONS_DEFAULTENC_ANSI
+            MENUITEM SEPARATOR
+            MENUITEM "Unicode (UTF-8)",             ID_OPTIONS_DEFAULTENC_UTF8
+            MENUITEM "Unicode (UTF-16)",            ID_OPTIONS_DEFAULTENC_UTF16
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Wrap To Window",             ID_OPTIONS_WRAP, CHECKED
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Sort Text...",               ID_TOOLS_SORT
+        MENUITEM SEPARATOR
+        MENUITEM "S&yntax Coloring...",         ID_TOOLS_SYNTAX
+        MENUITEM SEPARATOR
+        MENUITEM "&Find In Files...\tCtrl+D",   ID_TOOLS_FINDINFILES
+        MENUITEM "Change Case...",              ID_TOOLS_CHANGECASE
+        MENUITEM SEPARATOR
+        MENUITEM "Fix End Of Line...",          ID_TOOLS_FIXLINE
+        MENUITEM SEPARATOR
+        MENUITEM "&Insert Characters...",       ID_TOOLS_INSERTCHAR
+        MENUITEM "Show Character Codes...",     ID_TOOLS_SHOWCODES
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&Next\tCtrl+Tab",             ID_WINDOW_NEXT
+        MENUITEM "&Previous\tCtrl+Shift+Tab",   ID_WINDOW_PREV
+        MENUITEM SEPARATOR
+        MENUITEM "Split Window &Horizontally",  ID_WINDOW_SPLITHORIZ
+        MENUITEM "Split Window &Vertically",    ID_WINDOW_SPLITVERT
+        MENUITEM SEPARATOR
+        MENUITEM "&File Manager...\tCtrl+M",    ID_WINDOW_MANAGER
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About ZEdit",                ID_HELP_ABOUT
+    END
+END
+
+IDR_CONTEXT MENU
+BEGIN
+    POPUP "Edit"
+    BEGIN
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Open Document",               ID_EDIT_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "Select A&ll   \tCtrl+A",      ID_EDIT_SELECTALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Binary View",                ID_EDIT_BINARY
+    END
+    POPUP "Tabs"
+    BEGIN
+        MENUITEM "&Close",                      ID_TABS_CLOSE
+        MENUITEM "Close A&ll",                  ID_TABS_CLOSEALL
+        MENUITEM "Close All &Except",           ID_TABS_CLOSEEXCEPT
+        MENUITEM SEPARATOR
+        MENUITEM "&Save",                       ID_TABS_SAVE
+        MENUITEM "Save &As...",                 ID_TABS_SAVEAS
+        MENUITEM "Sa&ve All",                   ID_TABS_SAVEALL
+        MENUITEM SEPARATOR
+        MENUITEM "Open Containing Folder",      ID_TABS_OPENFOLDER
+        MENUITEM SEPARATOR
+        MENUITEM "S&witch To",                  ID_TABS_SWITCHTO
+        MENUITEM SEPARATOR
+        MENUITEM "P&roperties...",              ID_TABS_PROPERTIES
+    END
+    POPUP "Columns"
+    BEGIN
+        MENUITEM "&Edit...",                    ID_COLUMNS_EDIT
+        MENUITEM "&Color...",                   ID_COLUMNS_COLOR
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     ID_COLUMNS_DELETE
+    END
+    POPUP "Search"
+    BEGIN
+        MENUITEM "&Paragraph Mark",             ID_SEARCH_PARAGRAPH
+        MENUITEM "&Tab Character",              ID_SEARCH_TABCHARACTER
+        MENUITEM SEPARATOR
+        MENUITEM "&Caret Character",            ID_SEARCH_CARETCHARACTER
+        MENUITEM SEPARATOR
+        MENUITEM "&ASCII Code",                 ID_SEARCH_ASCIICODE
+        MENUITEM "&Unicode Code",               ID_SEARCH_UNICODECODE
+    END
+    POPUP "PageSetup"
+    BEGIN
+        MENUITEM "&Filename\t^F",               ID_PAGE_FILENAME
+        MENUITEM "&Pathname\t^P",               ID_PAGE_PATHNAME
+        MENUITEM SEPARATOR
+        MENUITEM "Pa&ge Number   \t^G",         ID_PAGE_PAGE
+        MENUITEM "Current &Time\t^T",           ID_PAGE_TIME
+        MENUITEM "Current &Date\t^D",           ID_PAGE_DATE
+        MENUITEM SEPARATOR
+        MENUITEM "&Left Align\t^L",             ID_PAGE_LEFT
+        MENUITEM "&Center\t^C",                 ID_PAGE_CENTER
+        MENUITEM "&Right Align\t^R",            ID_PAGE_RIGHT
+    END
+    POPUP "Window"
+    BEGIN
+        MENUITEM "&Activate File",              ID_FILEMANAGER_ACTIVATE
+        MENUITEM "Sho&w Current File",          ID_FILEMANAGER_FIND
+        MENUITEM SEPARATOR
+        MENUITEM "&Save File(s)",               ID_FILEMANAGER_SAVE
+        MENUITEM "&Close File(s)",              ID_FILEMANAGER_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Close File Manager",          ID_FILEMANAGER_CLOSEMANAGER
+    END
+    POPUP "FileDrop"
+    BEGIN
+        MENUITEM "&Open",                       ID_OPENAS_DEFAULT
+        POPUP "Open &As"
+        BEGIN
+            MENUITEM "&ANSI",                       ID_OPENAS_ANSI
+            MENUITEM SEPARATOR
+            MENUITEM "Unicode (UTF-&8)",            ID_OPENAS_UTF8
+            MENUITEM "Unicode (UTF-&16)",           ID_OPENAS_UTF16
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Insert &Filename(s)",         ID_OPENAS_FILENAME
+        MENUITEM "Insert &Pathname(s)",         ID_OPENAS_PATHNAME
+        MENUITEM SEPARATOR
+        MENUITEM "&Cancel",                     ID_FILEDROP_CANCEL
+    END
+    POPUP "FindInFiles"
+    BEGIN
+        MENUITEM "&Copy to Clipboard",          ID_FINDINFILES_COPYTOCLIPBOARD
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ZEDIT ACCELERATORS
+BEGIN
+    "A",            ID_EDIT_SELECTALL,      VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_TOOLS_FINDINFILES,   VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_OPTIONS_GOTO,        VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_WINDOW_MANAGER,      VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_F3,          ID_EDIT_FINDNEXT,       VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_FINDPREV,       VIRTKEY, SHIFT, NOINVERT
+    VK_TAB,         ID_WINDOW_NEXT,         VIRTKEY, CONTROL, NOINVERT
+    VK_TAB,         ID_WINDOW_PREV,         VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUT DIALOGEX 0, 0, 204, 53
+STYLE DS_SETFONT | DS_MODALFRAME | DS_NOIDLEMSG | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About ZEdit"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,162,7,35,12
+    ICON            IDI_ZEDIT,IDC_STATIC,11,11,20,20
+    LTEXT           "ZEdit Version 1.1.26\n\nCopyright © 2016 by Darrell Zook",IDC_STATIC,43,14,108,28,0,WS_EX_NOPARENTNOTIFY | WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_STATIC,7,3,148,42
+END
+
+IDD_TABS DIALOGEX 0, 0, 136, 46
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Tab Width"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT,13,22,67,12,0,WS_EX_NOPARENTNOTIFY
+    DEFPUSHBUTTON   "OK",IDOK,95,5,34,13
+    PUSHBUTTON      "Cancel",IDCANCEL,95,20,34,13
+    LTEXT           "Enter new tab width:",IDC_STATIC,14,10,67,9,0,WS_EX_NOPARENTNOTIFY
+    CONTROL         "",IDC_STATIC,"Static",SS_SIMPLE | SS_SUNKEN | WS_GROUP,7,5,80,36,WS_EX_NOPARENTNOTIFY
+END
+
+IDD_GOTOLINE DIALOGEX 0, 0, 154, 46
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Go To Line"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT,13,22,84,12,0,WS_EX_NOPARENTNOTIFY
+    DEFPUSHBUTTON   "OK",IDOK,113,5,34,13
+    PUSHBUTTON      "Cancel",IDCANCEL,113,20,34,13
+    LTEXT           "Go to line (1 to",IDC_STATIC,13,11,48,9,NOT WS_GROUP,WS_EX_NOPARENTNOTIFY
+    LTEXT           "111500):",IDC_POSSIBLE,61,11,36,8,NOT WS_GROUP,WS_EX_NOPARENTNOTIFY
+    CONTROL         "",IDC_STATIC,"Static",SS_SIMPLE | SS_SUNKEN | WS_GROUP,7,5,98,36,WS_EX_NOPARENTNOTIFY
+END
+
+IDD_FIND DIALOGEX 0, 0, 276, 87
+STYLE DS_SETFONT | DS_MODALFRAME | DS_NOIDLEMSG | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Replace"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Fi&nd what:",IDC_STATIC,6,10,33,9,0,WS_EX_NOPARENTNOTIFY
+    COMBOBOX        IDC_COMBO_FIND,56,7,141,56,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Re&place with:",IDC_STATIC_REPLACE,6,27,44,8,0,WS_EX_NOPARENTNOTIFY
+    COMBOBOX        IDC_COMBO_REPLACE,56,24,141,56,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Search:",IDC_STATIC_SEARCH,6,51,26,8,0,WS_EX_NOPARENTNOTIFY
+    COMBOBOX        IDC_COMBO_DIRECTION,56,48,42,46,CBS_DROPDOWNLIST | WS_TABSTOP
+    CONTROL         "&Whole words only",IDC_WHOLEWORD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,56,69,9
+    CONTROL         "&Case sensitive",IDC_MATCHCASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,68,60,9
+    DEFPUSHBUTTON   "&Find Next",IDC_FINDNEXT,219,7,50,14
+    PUSHBUTTON      "&Replace",IDC_REPLACE,219,24,50,14
+    PUSHBUTTON      "Replace &All",IDC_REPLACEALL,219,42,50,14
+    PUSHBUTTON      "C&lose",IDCANCEL,219,66,50,14
+    GROUPBOX        "Match critera",IDC_STATIC_MATCH,113,44,84,36,WS_GROUP
+    CONTROL         "Replace &in all open files",IDC_REPLACEFILES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,69,89,9
+    LTEXT           "",IDC_STATIC_FIND_MENU,200,7,11,12,NOT WS_VISIBLE | WS_BORDER
+    LTEXT           "",IDC_STATIC_REPLACE_MENU,200,24,11,12,NOT WS_VISIBLE | WS_BORDER
+END
+
+IDD_PAGESETUP DIALOG 0, 0, 247, 87
+STYLE DS_SETFONT | DS_MODALFRAME | DS_NOIDLEMSG | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Page Setup"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&Header:",IDC_STATIC,7,10,26,8
+    EDITTEXT        IDC_HEADER,41,7,136,12,ES_AUTOHSCROLL
+    LTEXT           "&Footer:",IDC_STATIC,7,24,23,8
+    EDITTEXT        IDC_FOOTER,41,23,136,12,ES_AUTOHSCROLL
+    GROUPBOX        "Margins",IDC_STATIC,7,37,233,43
+    LTEXT           "&Left:",IDC_STATIC,13,49,15,8
+    EDITTEXT        IDC_LEFT,41,47,34,12,ES_AUTOHSCROLL
+    LTEXT           "&Right:",IDC_STATIC,13,65,20,8
+    EDITTEXT        IDC_RIGHT,41,63,34,12,ES_AUTOHSCROLL
+    LTEXT           "&Top:",IDC_STATIC,86,49,16,8
+    EDITTEXT        IDC_TOP,120,47,34,12,ES_AUTOHSCROLL
+    LTEXT           "&Bottom:",IDC_STATIC,86,65,25,8
+    EDITTEXT        IDC_BOTTOM,120,63,34,12,ES_AUTOHSCROLL
+    LTEXT           "Hea&der:",IDC_STATIC,166,50,26,8
+    EDITTEXT        IDC_HEADER_MARGIN,200,47,34,12,ES_AUTOHSCROLL
+    LTEXT           "F&ooter:",IDC_STATIC,166,66,23,8
+    EDITTEXT        IDC_FOOTER_MARGIN,200,63,34,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,200,7,40,12
+    PUSHBUTTON      "Cancel",IDCANCEL,200,23,40,12
+    LTEXT           "",IDC_STATIC_HEAD,180,7,11,12,NOT WS_VISIBLE | WS_BORDER
+    LTEXT           "",IDC_STATIC_FOOT,180,23,11,12,NOT WS_VISIBLE | WS_BORDER
+END
+
+IDD_PRINT DIALOG 0, 0, 191, 58
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Printing"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Cancel",IDCANCEL,143,7,41,14
+    LTEXT           "Now printing...",IDC_STATIC,15,13,46,8
+    GROUPBOX        "",IDC_STATIC,7,3,130,49
+    LTEXT           "",IDC_PRINTFILE,23,25,105,8
+    LTEXT           "Page: 1",IDC_PRINTPAGE,15,38,83,9
+END
+
+IDD_ENTERCHAR DIALOGEX 0, 0, 231, 47
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Enter Characters"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_VALUES,13,23,161,12,ES_AUTOHSCROLL,WS_EX_NOPARENTNOTIFY
+    DEFPUSHBUTTON   "OK",IDOK,190,5,34,13
+    PUSHBUTTON      "Cancel",IDCANCEL,190,20,34,13
+    LTEXT           "Enter one or more hexadecimal values to insert:",IDC_STATIC3,13,11,162,10,NOT WS_GROUP,WS_EX_NOPARENTNOTIFY
+    CONTROL         "",IDC_STATIC,"Static",SS_SIMPLE | SS_SUNKEN | WS_GROUP,7,5,175,37,WS_EX_NOPARENTNOTIFY
+END
+
+IDD_VIEWCODES DIALOGEX 0, 0, 278, 50
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "View Character Codes"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Close",IDCANCEL,237,5,34,13
+    LTEXT           "The hexadecimal value(s) surrounding the current selection are:",IDC_STATIC,13,11,199,9,NOT WS_GROUP,WS_EX_NOPARENTNOTIFY
+    LTEXT           "",IDC_VALUES,13,24,207,19
+    CONTROL         "",IDC_FRAME,"Static",SS_SIMPLE | SS_SUNKEN | WS_GROUP,7,5,221,40,WS_EX_NOPARENTNOTIFY
+END
+
+IDD_NEWFILE DIALOG 0, 0, 191, 73
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "New File"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_LISTTYPE,13,24,124,36,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "",IDC_STATIC,7,2,136,65
+    LTEXT           "Choose the type of document to create.",IDC_STATIC,13,11,125,10
+    DEFPUSHBUTTON   "OK",IDOK,150,6,34,13
+    PUSHBUTTON      "Cancel",IDCANCEL,150,22,34,13
+END
+
+IDD_SORT DIALOGEX 0, 0, 154, 53
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Sort Text"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Choose the sort options",IDC_STATIC,14,9,83,10
+    CONTROL         "Descending",IDC_DESCENDING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,22,66,8
+    CONTROL         "Case Sensitive",IDC_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,34,66,8
+    DEFPUSHBUTTON   "OK",IDOK,113,5,34,13
+    PUSHBUTTON      "Cancel",IDCANCEL,113,20,34,13
+    CONTROL         "",IDC_STATIC,"Static",SS_SIMPLE | SS_SUNKEN | WS_GROUP,7,5,98,43,WS_EX_NOPARENTNOTIFY
+END
+
+IDD_SPELL DIALOG 0, 0, 204, 74
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Spell Check"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         ID_SUGGEST,14,21,124,42,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Ignore",ID_IGNORE,153,5,44,13
+    PUSHBUTTON      "Change",ID_CHANGE,153,20,44,13
+    PUSHBUTTON      "Close",IDCANCEL,153,56,44,13
+    GROUPBOX        "",IDC_STATIC,7,2,138,68
+    LTEXT           "The selected word is spelled incorrectly.",IDC_STATIC,13,10,128,10
+END
+
+IDD_FILEMANAGER DIALOGEX 0, 0, 193, 74
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "File Manager"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_LISTVIEW,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_SHAREIMAGELISTS | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,47,12,122,48,WS_EX_CLIENTEDGE
+END
+
+IDD_PROPERTIES DIALOG 0, 0, 227, 204
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "General"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            "",IDC_FILEICON,7,7,21,20
+    EDITTEXT        IDC_FILENAME,59,11,172,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,32,213,1
+    LTEXT           "Type:",IDC_STATIC,7,40,40,9
+    EDITTEXT        IDC_FILETYPE,59,40,172,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    LTEXT           "Location:",IDC_STATIC,7,53,40,9
+    EDITTEXT        IDC_LOCATION,59,53,172,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    LTEXT           "Size:",IDC_STATIC,7,66,24,9
+    LTEXT           "",IDC_FILESIZE,59,66,172,10
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,84,213,1
+    LTEXT           "MS-DOS name:",IDC_STATIC,7,92,60,9
+    LTEXT           "",IDC_MSDOS,68,92,152,10,SS_NOPREFIX
+    LTEXT           "Created:",IDC_STATIC,7,105,36,9
+    EDITTEXT        IDC_CREATED,68,105,152,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    LTEXT           "Modified:",IDC_STATIC,7,118,50,9
+    EDITTEXT        IDC_MODIFIED,68,118,152,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    LTEXT           "Accessed:",IDC_STATIC,8,131,50,9
+    EDITTEXT        IDC_ACCESSED,68,131,152,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,149,213,1
+    CONTROL         "&Read-only",IDC_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,68,157,58,10
+    CONTROL         "Hi&dden",IDC_HIDDEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,129,157,58,10
+    CONTROL         "Ar&chive",IDC_ARCHIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,68,169,58,10
+    CONTROL         "System",IDC_SYSTEM,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,129,169,58,10
+    LTEXT           "Attributes:",IDC_STATIC,7,157,32,9
+END
+
+IDD_STATISTICS DIALOG 0, 0, 227, 204
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Statistics"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            "",IDC_FILEICON,7,7,21,20
+    EDITTEXT        IDC_FILENAME,59,11,172,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    CONTROL         "",-1,"Static",SS_ETCHEDHORZ,7,32,213,1
+    LTEXT           "Opened as:",-1,7,40,40,9
+    EDITTEXT        IDC_FILETYPE,59,40,172,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    LTEXT           "Tab position:",-1,7,53,42,9
+    EDITTEXT        IDC_TABPOS,59,53,172,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    CONTROL         "",-1,"Static",SS_ETCHEDHORZ,7,70,212,1
+    LTEXT           "Paragraph count:",-1,7,78,60,9
+    LTEXT           "Character count:",-1,7,91,54,9
+    EDITTEXT        IDC_CHARS,68,91,152,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    LTEXT           "Time to load:",-1,7,104,50,9
+    EDITTEXT        IDC_LOADTIME,68,104,152,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    LTEXT           "Memory used:",-1,8,117,50,9
+    EDITTEXT        IDC_MEMORY,68,117,152,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+    EDITTEXT        IDC_PARAS,68,78,152,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
+END
+
+IDD_SYNTAXCOLOR DIALOGEX 0, 0, 340, 202
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Syntax Coloring"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "&OK",IDOK,231,184,50,14,WS_DISABLED
+    PUSHBUTTON      "&Cancel",IDCANCEL,286,184,50,14
+    GROUPBOX        "Block comment ",IDC_STATIC,184,105,144,31
+    LTEXT           "Star&t:",IDC_STATIC,190,120,18,10
+    EDITTEXT        IDC_BLOCK_START,210,118,30,12,ES_AUTOHSCROLL
+    LTEXT           "Sto&p:",IDC_STATIC,248,120,18,10
+    EDITTEXT        IDC_BLOCK_STOP,268,118,30,12,ES_AUTOHSCROLL
+    LTEXT           "",IDC_BLOCK_COLOR,307,118,12,11,SS_NOTIFY | SS_SUNKEN
+    CONTROL         "Keywords are &case sensitive",IDC_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,183,142,114,10
+    GROUPBOX        "&Paragraph comments ",IDC_STATIC,184,22,144,78
+    CONTROL         "List1",IDC_PARA,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_EDITLABELS | LVS_NOSORTHEADER | WS_TABSTOP,190,33,132,60,WS_EX_CLIENTEDGE
+    GROUPBOX        "Keywords ",IDC_STATIC,12,22,164,130
+    LTEXT           "&Group:",IDC_STATIC,18,36,24,10
+    COMBOBOX        IDC_GROUP,46,33,103,41,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "",IDC_GROUP_COLOR,156,33,12,11,SS_NOTIFY | SS_SUNKEN
+    EDITTEXT        IDC_KEYWORD,19,52,149,74,ES_MULTILINE | NOT WS_BORDER | WS_VSCROLL,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "&New",IDC_GROUP_NEW,19,132,34,12
+    PUSHBUTTON      "&Delete",IDC_GROUP_DEL,130,132,37,12
+    PUSHBUTTON      "&Rename",IDC_GROUP_REN,70,132,42,12
+    LTEXT           "&Extensions:",IDC_STATIC,12,160,38,9
+    EDITTEXT        IDC_EXT,51,159,192,12,ES_AUTOHSCROLL
+    LTEXT           "Default text color:",IDC_STATIC,254,160,56,10
+    LTEXT           "",IDC_DEFAULT_COLOR,315,159,12,11,SS_NOTIFY | SS_SUNKEN
+    CONTROL         "Tab1",IDC_SCHEMES,"SysTabControl32",0x0,4,4,332,174
+END
+
+IDD_FINDINFILES DIALOG 0, 0, 277, 95
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Find In Files"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Fi&nd what:",IDC_STATIC,7,9,34,9
+    COMBOBOX        IDC_COMBO_FIND,66,7,154,56,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "In files/file &types:",IDC_STATIC,7,26,54,9
+    COMBOBOX        IDC_COMBO_FILTER,66,24,154,56,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "In &folder:",IDC_STATIC,7,43,29,9
+    EDITTEXT        IDC_FOLDER,66,41,154,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Browse...",IDBROWSE,230,41,40,13
+    GROUPBOX        "Match critera",IDC_STATIC3,7,60,165,28,WS_GROUP
+    CONTROL         "&Whole words only",IDC_WHOLEWORD,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,15,72,69,9
+    CONTROL         "&Case sensitive",IDC_MATCHCASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,100,72,60,9
+    CONTROL         "Look in &subfolders",IDC_SUBFOLDERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,185,72,70,8
+    DEFPUSHBUTTON   "Find",IDOK,230,7,40,13
+    PUSHBUTTON      "Cancel",IDCANCEL,230,22,40,13
+END
+
+IDD_FINDRESULTS DIALOGEX 0, 0, 252, 81
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "ZEdit: Files containing"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_LISTVIEW,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,53,19,117,60,WS_EX_CLIENTEDGE
+END
+
+IDD_COLUMNMARKER DIALOGEX 0, 0, 152, 65
+STYLE DS_SETFONT | DS_MODALFRAME | DS_NOIDLEMSG | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Column Markers"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Add",ID_ADD,111,7,34,13
+    PUSHBUTTON      "Delete",ID_DELETE,111,22,34,13
+    CONTROL         "List1",IDC_COLUMN,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_EDITLABELS | LVS_NOSORTHEADER | WS_TABSTOP,7,7,93,51,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Close",IDCANCEL,111,45,34,13
+END
+
+IDD_FIXLINES DIALOG 0, 0, 191, 73
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Fix Lines"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "",IDC_STATIC,7,2,136,65
+    LTEXT           "Choose the type of line ending to convert to.",IDC_STATIC,13,11,125,18
+    DEFPUSHBUTTON   "OK",IDOK,150,6,34,13
+    PUSHBUTTON      "Cancel",IDCANCEL,150,22,34,13
+    CONTROL         "Carriage Return - Line Feed (PC)",IDC_CRLF,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,31,120,9
+    CONTROL         "Carriage Return (Unix)",IDC_CR,"Button",BS_AUTORADIOBUTTON,13,41,88,9
+    CONTROL         "Line Feed (Mac)",IDC_LF,"Button",BS_AUTORADIOBUTTON,13,51,88,9
+END
+
+IDD_CHANGECASE DIALOGEX 0, 0, 191, 93
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Change Case"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "",IDC_STATIC,7,6,135,66
+    LTEXT           "Choose one of the following options:",IDC_STATIC,13,11,125,10
+    CONTROL         "&lowercase",IDC_LOWER,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,20,88,9
+    CONTROL         "&UPPERCASE",IDC_UPPER,"Button",BS_AUTORADIOBUTTON,13,30,120,9
+    CONTROL         "tO&GGLE cASE",IDC_TOGGLE,"Button",BS_AUTORADIOBUTTON,13,40,120,9
+    CONTROL         "&Sentence case.",IDC_SENTENCE,"Button",BS_AUTORADIOBUTTON,13,50,88,9
+    CONTROL         "&Title Case",IDC_TITLE,"Button",BS_AUTORADIOBUTTON,13,60,88,9
+    DEFPUSHBUTTON   "OK",IDOK,150,6,34,13
+    PUSHBUTTON      "Cancel",IDCANCEL,150,22,34,13
+    LTEXT           "Note: This action cannot be undone",IDC_NOTE,7,78,115,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 197
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 46
+    END
+
+    IDD_TABS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 129
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 41
+    END
+
+    IDD_GOTOLINE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 147
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 41
+    END
+
+    IDD_FIND, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 269
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 80
+    END
+
+    IDD_PAGESETUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 240
+        VERTGUIDE, 177
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 80
+    END
+
+    IDD_PRINT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 184
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 51
+    END
+
+    IDD_ENTERCHAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        VERTGUIDE, 13
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 42
+    END
+
+    IDD_VIEWCODES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 271
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 41
+    END
+
+    IDD_NEWFILE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 184
+        VERTGUIDE, 13
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 67
+    END
+
+    IDD_SORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 147
+        VERTGUIDE, 14
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_SPELL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 197
+        VERTGUIDE, 153
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 69
+    END
+
+    IDD_PROPERTIES, DIALOG
+    BEGIN
+        VERTGUIDE, 220
+    END
+
+    IDD_SYNTAXCOLOR, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 336
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 198
+    END
+
+    IDD_FINDINFILES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 270
+        VERTGUIDE, 66
+        VERTGUIDE, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+        HORZGUIDE, 47
+        HORZGUIDE, 76
+    END
+
+    IDD_FINDRESULTS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 79
+    END
+
+    IDD_COLUMNMARKER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 145
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+
+    IDD_FIXLINES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 184
+        VERTGUIDE, 13
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 67
+    END
+
+    IDD_CHANGECASE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 184
+        VERTGUIDE, 13
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 87
+        HORZGUIDE, 72
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,1,26,0
+ PRODUCTVERSION 1,1,26,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "A replacement for Notepad"
+            VALUE "FileDescription", "ZEdit"
+            VALUE "FileVersion", "1.1.26.0"
+            VALUE "InternalName", "ZEdit"
+            VALUE "LegalCopyright", "Freeware, Copyright © 2016"
+            VALUE "OriginalFilename", "ZEdit.exe"
+            VALUE "ProductName", "ZEdit"
+            VALUE "ProductVersion", "1.1.26.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEWTYPE         "Creates a new document"
+    ID_TOOLS_SORT           "Sort the selection or the current document"
+    ID_TOOLS_SPELL          "Spell check the current document"
+    ID_WINDOW_MANAGER       "Manage the currently open files"
+    ID_WINDOW_PREV          "Go to the previous file"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Creates a new document"
+    ID_FILE_OPEN            "Opens an existing document"
+    ID_FILE_CLOSE           "Closes the document"
+    ID_FILE_SAVE            "Saves the document"
+    ID_FILE_PRINT           "Prints all or part of the file"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_CLOSEALL        "Closes all open documents"
+    ID_FILE_SAVEAS          "Saves the document with a new name"
+    ID_FILE_SAVEALL         "Saves all open documents"
+    ID_FILE_PAGESETUP       "Changes the page layout settings"
+    ID_HELP_ABOUT           "Display program information"
+    ID_FILE_EXIT            "Exits ZEdit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_PROPERTIES      "TODO"
+    ID_TOOLS_SYNTAX         "Modify syntax coloring settings"
+    ID_TOOLS_FINDINFILES    "Find the specified text in files"
+    ID_TOOLS_CHANGECASE     "Change the case of the selection or the current document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_FILE1           "Opens this document"
+    ID_FILE_FILE2           "Opens this document"
+    ID_FILE_FILE3           "Opens this document"
+    ID_FILE_FILE4           "Opens this document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_FILE5           "Opens this document"
+    ID_FILE_FILE6           "Opens this document"
+    ID_FILE_FILE7           "Opens this document"
+    ID_FILE_FILE8           "Opens this document"
+    ID_FILE_FILE9           "Opens this document"
+    ID_FILE_FILE10          "Opens this document"
+    ID_FILE_FILE11          "Opens this document"
+    ID_FILE_FILE12          "Opens this document"
+    ID_FILE_FILE13          "Opens this document"
+    ID_FILE_FILE14          "Opens this document"
+    ID_FILE_FILE15          "Opens this document"
+    ID_FILE_FILE16          "Opens this document"
+    ID_FILE_FILE17          "Opens this document"
+    ID_FILE_FILE18          "Opens this document"
+    ID_FILE_FILE19          "Opens this document"
+    ID_FILE_FILE20          "Opens this document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_COPY            "Copy the selection to the clipboard"
+    ID_EDIT_CUT             "Cut the selection and put it on the clipboard"
+    ID_EDIT_FIND            "Find the specified text"
+    ID_EDIT_PASTE           "Insert the clipboard contents at the insertion point"
+    ID_EDIT_REPLACE         "Replace the specified text with different text"
+    ID_EDIT_UNDO            "Undo the last action"
+    ID_EDIT_REDO            "Redo the previously undone action"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_SELECTALL       "Select the entire document"
+    ID_EDIT_FINDPREV        "Find the previous occurrence of the specified text"
+    ID_EDIT_FINDNEXT        "Find the next occurrence of the specified text"
+END
+
+STRINGTABLE
+BEGIN
+    ID_OPTIONS_FONT         "Change the font"
+    ID_TOOLS_SHOWCODES      "Show character codes surrounding the insertion point"
+    ID_OPTIONS_GOTO         "Move the cursor to a specific line number"
+    ID_OPTIONS_WRAP         "Toggles between wrapping and non-wrapping mode"
+    ID_OPTIONS_TAB          "Modify the tab width"
+END
+
+STRINGTABLE
+BEGIN
+    ID_OPTIONS_COLUMNS      "Modify the column settings"
+    ID_TOOLS_FIXLINE        "Fix end-of-line characters"
+END
+
+STRINGTABLE
+BEGIN
+    ID_OPENAS_ANSI          "Open a file in Ansi mode"
+    ID_OPENAS_UTF8          "Open a file in UTF-8 mode"
+    ID_OPENAS_UTF16         "Open a file in UTF-16 mode"
+    ID_OPENAS_DEFAULT       "Open a file"
+END
+
+STRINGTABLE
+BEGIN
+    ID_TOOLS_INSERTCHAR     "Insert characters at the cursor"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_NEXT          "Go to the next file"
+    ID_WINDOW_SPLITVERT     "Split the current window vertically"
+    ID_WINDOW_SPLITHORIZ    "Split the current window horizontally"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
